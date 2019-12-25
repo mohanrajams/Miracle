@@ -1,0 +1,8 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/Miracle.All/Service/Mircale.WebApi/bin/Debug/netcoreapp2.1
+/Miracle.All/Service/Mircale.WebApi/obj
+/.vs
+/Miracle.All/.vs/Miracle.All
