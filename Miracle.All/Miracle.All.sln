@@ -5,7 +5,7 @@ VisualStudioVersion = 15.0.28307.960
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Service", "Service", "{F16A229C-CB27-4003-962F-9358C51D1651}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mircale.WebApi", "Service\Mircale.WebApi\Mircale.WebApi.csproj", "{8A84A589-B380-4BE4-909A-1FB013F0392C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mircale.WebApi", "Service\Mircale.WebApi\Mircale.WebApi.csproj", "{8A84A589-B380-4BE4-909A-1FB013F0392C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

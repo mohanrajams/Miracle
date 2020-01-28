@@ -6,3 +6,5 @@
 /Miracle.All/Service/Mircale.WebApi/obj
 /.vs
 /Miracle.All/.vs/Miracle.All
+/Miracle.All/Service/Mircale.IdentityServer/bin/Debug/netcoreapp2.1
+/Miracle.All/Service/Mircale.IdentityServer/obj
