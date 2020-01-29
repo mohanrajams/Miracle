@@ -15,18 +15,18 @@ class EditContact extends React.Component {
 
         this.state = {
             loginStatus: false,
-            userId: 0,
-            userName: '',
-            emailId: '',
-            location: '',
-            statusDescription: 'Not Started',
-            statusId: 3,
-            mobile: '',
-            sexId: 0,
-            dob: new Date(),
-            kpi: {},
-            teamMembers: [],
-            isDetailsLoaded: false
+            userId: this.props.userDetails.userId,
+            userName: this.props.userDetails.userName,
+            emailId: this.props.userDetails.emailId,
+            location: this.props.userDetails.location,
+            statusDescription: this.props.userDetails.statusDescription,
+            statusId: this.props.userDetails.statusId,
+            mobile: this.props.userDetails.mobile,
+            sexId: this.props.userDetails.sexId,
+            dob: this.props.userDetails.dob,
+            kpi: this.props.userDetails.kpi,
+            teamMembers: this.props.userDetails.teamMembers,
+            isDetailsLoaded: this.props.userDetails.isDetailsLoaded
         };
 
         this.handleChange = this.handleChange.bind(this);
@@ -50,7 +50,7 @@ class EditContact extends React.Component {
     render() {
         return (
             <ContactView
-                userDetails={this.props.userDetails}
+                userDetails={this.state}
                 sexLookup={this.props.sexLookup}
                 onValueChangeHandler={this.handleChange}
                 onSubmitHandler={this.handleSubmit}

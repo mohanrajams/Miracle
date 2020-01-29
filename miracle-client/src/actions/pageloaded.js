@@ -17,5 +17,5 @@ export const addnewpageloaded = state => ({
 
 export const editContactPageloaded = state => ({
     type: constants.NEW_PAGE_LOADED,
-    payload: { loadedPage: constants.ADDNEW_PAGE }
+    payload: { loadedPage: constants.EDIT_PAGE }
 })

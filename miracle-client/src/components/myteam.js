@@ -5,7 +5,6 @@ import { connect } from 'react-redux';
 import { myteampageloaded } from '../actions/pageloaded';
 import { teamMemberSelected, teamMemberStatusChanged } from '../actions/myetam';
 import PropTypes from 'prop-types';
-import more from '../assets/images/more.png';
 import TeamMemberCard from './teammembercard';
 import { withRouter } from 'react-router-dom';
 import StatusChangeModal from './teammemberStatusChangeModal';

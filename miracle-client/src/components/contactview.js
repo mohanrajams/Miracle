@@ -30,7 +30,7 @@ const ContactView = (props) => {
                         </div>
                         <div className="col-sm-6 mx-20 form-group">
                             <label htmlFor="">Date of Birth</label>
-                            <input type="date" className="form-control" value={props.userDetails.dob} name="dob" onChange={(e) => props.onValueChangeHandler(e)} />
+                            <input type="date" className="form-control" defaultValue={props.userDetails.dob} name="dob" onChange={(e) => props.onValueChangeHandler(e)} />
                         </div>
                         <div className="col-md-12 mx-20 form-group">
                             <label htmlFor="">City</label>

@@ -15,6 +15,8 @@ const getTitle = function (page) {
             return 'My Team';
         case constants.ADDNEW_PAGE:
             return 'Add New';
+        case constants.EDIT_PAGE:
+            return 'Edit Contact';
         default:
             return '';
     }
@@ -38,7 +40,7 @@ const headerReducer = (state = intialState, action) => {
             }
         case constants.TEAMMEMBER_SELECTED_BACK:
             state.previouseSelecteTeamMember.shift()
-            return Object.assign({},state,{currentSelectedTeamMember:action.payload});            
+            return Object.assign({}, state, { currentSelectedTeamMember: action.payload });
         default:
             return state;
     }

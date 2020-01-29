@@ -8,7 +8,7 @@ export const contactAdded = state => ({
 })
 
 export const contactUpdated = state => ({
-    type: constants.CONTACT_ADDED,
+    type: constants.CONTACT_UPDATED,
     payload: Object.assign({}, state, { userId: userIdCounter++ })
 })
 

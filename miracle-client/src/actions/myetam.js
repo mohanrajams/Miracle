@@ -16,7 +16,7 @@ const getFakeData = (state) => {
                 statusId: 1,
                 mobile: '543148159',
                 sexId: 2,
-                dob: new Date('1989-05-31'),
+                dob: new Date(),
                 kpi: {},
                 teamMembers: [],
                 isDetailsLoaded: false
@@ -31,7 +31,7 @@ const getFakeData = (state) => {
                 statusId: 2,
                 mobile: '543148160',
                 sexId: 1,
-                dob: new Date('1990-05-31'),
+                dob: new Date(),
                 kpi: {},
                 teamMembers: [],
                 isDetailsLoaded: false
@@ -46,7 +46,7 @@ const getFakeData = (state) => {
                 statusId: 3,
                 mobile: '543148161',
                 sexId: 2,
-                dob: new Date('1991-05-31'),
+                dob: new Date(),
                 kpi: {},
                 teamMembers: [],
                 isDetailsLoaded: false
@@ -62,7 +62,7 @@ const getFakeData = (state) => {
                 statusId: 3,
                 mobile: '543148162',
                 sexId: 1,
-                dob: new Date('1992-05-31'),
+                dob: new Date(),
                 kpi: {},
                 teamMembers: [],
                 isDetailsLoaded: false
@@ -86,7 +86,7 @@ const getFakeData = (state) => {
                 statusId: 1,
                 mobile: '543148159',
                 sexId: 2,
-                dob: new Date('1989-05-31'),
+                dob: new Date(),
                 kpi: {},
                 teamMembers: [],
                 isDetailsLoaded: false
@@ -101,7 +101,7 @@ const getFakeData = (state) => {
                 statusId: 2,
                 mobile: '543148160',
                 sexId: 1,
-                dob: new Date('1990-05-31'),
+                dob: new Date(),
                 kpi: {},
                 teamMembers: [],
                 isDetailsLoaded: false
@@ -116,7 +116,7 @@ const getFakeData = (state) => {
                 statusId: 3,
                 mobile: '543148161',
                 sexId: 2,
-                dob: new Date('1991-05-31'),
+                dob: new Date(),
                 kpi: {},
                 teamMembers: [],
                 isDetailsLoaded: false
@@ -132,7 +132,7 @@ const getFakeData = (state) => {
                 statusId: 3,
                 mobile: '543148162',
                 sexId: 1,
-                dob: new Date('1992-05-31'),
+                dob: new Date(),
                 kpi: {},
                 teamMembers: [],
                 isDetailsLoaded: false
@@ -156,7 +156,7 @@ const getFakeData = (state) => {
                 statusId: 1,
                 mobile: '543148159',
                 sexId: 2,
-                dob: new Date('1989-05-31'),
+                dob: new Date(),
                 kpi: {},
                 teamMembers: [],
                 isDetailsLoaded: false
@@ -171,7 +171,7 @@ const getFakeData = (state) => {
                 statusId: 2,
                 mobile: '543148160',
                 sexId: 1,
-                dob: new Date('1990-05-31'),
+                dob: new Date(),
                 kpi: {},
                 teamMembers: [],
                 isDetailsLoaded: false
