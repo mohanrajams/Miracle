@@ -22,10 +22,10 @@ class Home extends React.Component {
     }
 
     handleMyTeamClick() {
-        this.props.teamMemberSelected(this.props.userDetails);        
+        this.props.teamMemberSelected(this.props.userDetails);
     }
 
-    renderUserName() {        
+    renderUserName() {
         return (
             <div className="top-header">
                 <div className="row">
@@ -46,31 +46,34 @@ class Home extends React.Component {
 
     renderOptionSection() {
         return (
-            <div className="row home-nav">
-                <div className="col">
-                    <button className="item btn-block" onClick={this.handleMyTeamClick} >
-                        <img className="img-fluid" src={team} />
-                        <p>My Team </p>
-                    </button>
+            <div className="home-nav">
+                <div className="row">
+                    <div className="col">
+                        <button className="item btn-block" onClick={this.handleMyTeamClick} >
+                            <img className="img-fluid" src={team} />
+                            <p>My Team </p>
+                        </button>
+                    </div>
+                    <div className="col">
+                        <button className="item btn-block">
+                            <img className="img-fluid" src={miracle} />
+                            <p>Team Miracle</p>
+                        </button>
+                    </div>
                 </div>
-                <div className="col">
-                    <button className="item btn-block">
-                        <img className="img-fluid" src={miracle} />
-                        <p>Team Miracle </p>
-                    </button>
-                </div>
-                <div className="w100"></div>
-                <div className="col mt-3">
-                    <button className="item btn-block">
-                        <img className="img-fluid" src={contest} />
-                        <p>Contest</p>
-                    </button>
-                </div>
-                <div className="col mt-3">
-                    <button className="item btn-block">
-                        <img className="img-fluid" src={shop} />
-                        <p>Shop </p>
-                    </button>
+                <div className="row">
+                    <div className="col mt-3">
+                        <button className="item btn-block">
+                            <img className="img-fluid" src={contest} />
+                            <p>Contest</p>
+                        </button>
+                    </div>
+                    <div className="col mt-3">
+                        <button className="item btn-block">
+                            <img className="img-fluid" src={shop} />
+                            <p>Shop </p>
+                        </button>
+                    </div>
                 </div>
             </div>)
     }

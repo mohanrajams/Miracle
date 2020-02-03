@@ -36,7 +36,8 @@ const ContactView = (props) => {
                         </div>
                         <div className="col-md-12 mx-20 form-group">
                             <label htmlFor="">Mobile Number</label>
-                            <input type="text" className="form-control" value={props.userDetails.mobile} name="mobile" onChange={(e) => props.onValueChangeHandler(e)} />
+                            <input type="text" className="form-control brd-error" value={props.userDetails.mobile} name="mobile" onChange={(e) => props.onValueChangeHandler(e)} />
+                        <span className="error-msg">Mobile Number shld be 10</span>
                         </div>
                         <div className="col-md-12 mx-20 form-group">
                             <label htmlFor="">Email Id</label>

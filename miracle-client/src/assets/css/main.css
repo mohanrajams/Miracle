@@ -454,14 +454,21 @@ select{
     border: 0;
     border-radius: 5px;
     height: 34px;
-    background: url('../images/select.png') no-repeat right #ddd;
+    background: url('../images/select.png') no-repeat right 10px center #ddd;
     background-size: 20px;
     -webkit-appearance: none;
-    background-position-x: 291px;
+    /* background-position-x: 291px; */
 }
 .btn-custom{
     background-color: #e37c04;
     color: #fff;
    
     border-radius: 30px;
+}
+.brd-error{
+    border-bottom: 2px solid #ff0000;
+}
+.error-msg{
+    color:#ff0000;
+    font-size: 12px;
 }

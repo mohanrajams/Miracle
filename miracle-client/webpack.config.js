@@ -21,7 +21,7 @@ module.exports = {
     open: true,
     historyApiFallback: true,
     disableHostCheck: true,
-    //host: '192.168.16.246'
+     host: '192.168.16.169'
   },
   resolve: {
     extensions: ['*', '.js', '.jsx']

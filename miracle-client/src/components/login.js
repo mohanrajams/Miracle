@@ -1,5 +1,6 @@
 import React from 'react';
 import imglogin from '../assets/images/Logo-login.png';
+import parentlogin from '../assets/images/parent-logo.png';
 import loginAction from '../actions/login';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -14,7 +15,7 @@ class Login extends React.Component {
         this.state = {
             emailId: '',
             password: '',
-            loginStatus: false            
+            loginStatus: false
         };
 
         this.handleChange = this.handleChange.bind(this);
@@ -26,23 +27,27 @@ class Login extends React.Component {
     };
 
     handleSubmit(e) {
-        e.preventDefault();        
+        e.preventDefault();
         this.props.loginAction(this.state);
     }
 
-    render() {        
+    render() {
         return (
 
             <div className="login-container">
                 <form className="form-signin" onSubmit={this.handleSubmit}>
+                    <div className="text-center mb-2 parent-logo">
+                        <img src={parentlogin} alt="" height="80" />
+                    </div>
                     <div className="text-center mb-4">
-                        <img className="mb-4" src={imglogin} alt="" height="52" />
+                        <img src={imglogin} alt="" height="52" />
                     </div>
                     <div className="form-label-group">
+                       
                         <input
                             type="email"
                             id="inputEmail"
-                            className="form-control"
+                            className="form-control brd-error"
                             placeholder="Email address"
                             required=""
                             autoFocus=""
@@ -52,6 +57,7 @@ class Login extends React.Component {
                         />
 
                         <label htmlFor="inputEmail">Email address</label>
+                        <span className="error-msg">Username Invalid</span>
                     </div>
 
                     <div className="form-label-group">
@@ -69,6 +75,8 @@ class Login extends React.Component {
 
                     <button className="btn btn-lg btn-primary btn-block login-btn" type="submit">Sign in</button>
                 </form>
+
+
             </div>)
     };
 
