@@ -1,45 +1,35 @@
 import * as constants from '../constants';
-const getFakeData = () => {
-    return {
-        status: [
-            {
-                statusId:1,
-                statusDescription:'Active'
+import $ from 'jquery';
+
+const getLookupPromise = () => {
+    return new Promise(function (resolve, reject) {
+        $.ajax({
+            type: "GET",
+            url: constants.APIURL + 'Lookup/GetLookup',
+            contentType: 'application/json; charset=utf-8',
+            dataType: 'json',
+            beforeSend: function (xhr) {
+                xhr.setRequestHeader("Authorization", "Bearer " + sessionStorage.getItem('token'));
             },
-            {
-                statusId:2,
-                statusDescription:'In Progress'
-            }
-            ,
-            {
-                statusId:3,
-                statusDescription:'Not Started'
-            }
-            ,
-            {
-                statusId:4,
-                statusDescription:'Not Interested'
-            }
-        ],
-        sex:[
-            {
-                sexId:1,
-                sexDescription:'Male'
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                reject(errorThrown);
             },
-            {
-                sexId:2,
-                sexDescription:'FeMale'
-            },
-            {
-                sexId:3,
-                sexDescription:'Others'
+            success: function (result) {
+                resolve(result);
             }
-        ]
-    }
+        });
+    });
 }
 
-export const loadLookup = state => ({
-    type: constants.LOAD_LOOKUP,
-    payload: getFakeData()
-})
+export const loadLookup = state => {
+    return (dispatch) => {
+        getLookupPromise(state)
+            .then((lookup) => {
+                dispatch({
+                    type: constants.LOAD_LOOKUP,
+                    payload: lookup
+                });
+            });
+    }
+}
 

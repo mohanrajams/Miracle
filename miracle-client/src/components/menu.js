@@ -1,9 +1,8 @@
-import '../assets/css/bootstrap.min.css';
-import '../assets/css/main.css';
 import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import { Link } from "react-router-dom";
 
 class Menu extends React.Component {
 
@@ -30,7 +29,7 @@ class Menu extends React.Component {
                                 <li><a href="#">My Profile</a></li>
                                 <li><a href="#">FAQ</a></li>
                                 <li><a href="#">Change Password</a></li>
-                                <li><a href="#">Logout</a></li>
+                                <li><Link to='/'>Logout</Link></li>
                             </ul>
                         </div>
 

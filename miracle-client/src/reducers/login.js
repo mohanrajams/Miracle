@@ -10,10 +10,10 @@ const intialState = {
     statusId: 0,
     mobile: '',
     sexId: 1,
-    dob: new Date(),
-    kpi: {},
+    dob: new Date(),    
     teamMembers: [],
-    isDetailsLoaded: false
+    isDetailsLoaded: false,
+    accessToken: ''
 }
 
 const loginReducer = (state = intialState, action) => {

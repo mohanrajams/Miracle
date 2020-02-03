@@ -1,5 +1,3 @@
-import '../assets/css/bootstrap.min.css';
-import '../assets/css/main.css';
 import React from 'react';
 import imglogin from '../assets/images/Logo-login.png';
 import loginAction from '../actions/login';
@@ -23,19 +21,12 @@ class Login extends React.Component {
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    componentDidUpdate(prevProps, prevState) {
-        if (this.props.loginStatus === true) {
-            
-            this.props.history.push("/home");
-        }
-    }
-
     handleChange(e) {
         this.setState({ [e.target.name]: e.target.value });
     };
 
     handleSubmit(e) {
-        e.preventDefault();
+        e.preventDefault();        
         this.props.loginAction(this.state);
     }
 

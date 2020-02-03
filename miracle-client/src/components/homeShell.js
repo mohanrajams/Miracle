@@ -1,8 +1,6 @@
-import '../assets/css/bootstrap.min.css';
-import '../assets/css/main.css';
 import React from 'react';
 import { connect } from 'react-redux';
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { Router, Switch, Route } from "react-router-dom";
 import { withRouter } from 'react-router-dom';
 import { loadLookup } from '../actions/homeShell';
 import Home from './home';
@@ -11,6 +9,7 @@ import AddContact from './addcontact';
 import EditContact from './editcontact';
 import Header from './header';
 import Menu from './menu';
+import history from '../history';
 
 
 class HomeShell extends React.Component {
@@ -25,7 +24,7 @@ class HomeShell extends React.Component {
 
     render() {
         return (
-            <Router>
+            <Router history={history}>
                 <Header />
                 <Switch>
                     <Route exact path="/home">

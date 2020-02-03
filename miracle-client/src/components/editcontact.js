@@ -1,5 +1,3 @@
-import '../assets/css/bootstrap.min.css';
-import '../assets/css/main.css';
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -24,7 +22,7 @@ class EditContact extends React.Component {
             mobile: this.props.userDetails.mobile,
             sexId: this.props.userDetails.sexId,
             dob: this.props.userDetails.dob,
-            kpi: this.props.userDetails.kpi,
+            contactId: this.props.userDetails.contactId,
             teamMembers: this.props.userDetails.teamMembers,
             isDetailsLoaded: this.props.userDetails.isDetailsLoaded
         };

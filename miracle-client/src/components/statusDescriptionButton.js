@@ -1,16 +1,14 @@
-import '../assets/css/bootstrap.min.css';
-import '../assets/css/main.css';
 import React from 'react';
 
 const getStatusClass = (statusid) => {
     switch (statusid) {
-        case 1:
-            return 'status active mr-10';
-        case 2:
-            return 'status inprogress mr-10';
-        case 3:
-            return 'status not-interested mr-10';
         case 4:
+            return 'status active mr-10';
+        case 5:
+            return 'status inprogress mr-10';
+        case 6:
+            return 'status not-interested mr-10';
+        case 7:
             return 'status not-interested mr-10';
         default:
             return 'status active mr-10';

@@ -1,10 +1,8 @@
-import '../assets/css/bootstrap.min.css';
-import '../assets/css/main.css';
 import React from 'react';
 import user from '../assets/images/user.png';
 import StatusDescriptionButton from './statusDescriptionButton';
 
-const TeamMemberCard = (props) => {
+const TeamMemberCard = (props) => {    
     return (
         <li className="col-md-12  d-flex" onClick={() => props.onTeamMemberclickHandler(props.teammeber)}>
             <div className="userdetails">

@@ -1,0 +1,395 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="MiracleModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Contacts">
+          <Key>
+            <PropertyRef Name="ContactId" />
+          </Key>
+          <Property Name="ContactId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="bigint" Nullable="false" />
+          <Property Name="SexId" Type="bigint" Nullable="false" />
+          <Property Name="Dob" Type="datetime" Nullable="false" />
+          <Property Name="City" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="MobileNumber" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="RefererId" Type="bigint" />
+          <Property Name="ModifiedBy" Type="bigint" />
+          <Property Name="ModifiedDate" Type="datetime" />
+          <Property Name="StatusId" Type="bigint" />
+          <Property Name="Name" Type="varchar" MaxLength="500" />
+          <Property Name="IsActive" Type="bit" />
+        </EntityType>
+        <EntityType Name="LoginHistory">
+          <Key>
+            <PropertyRef Name="LoginHistoryId" />
+          </Key>
+          <Property Name="LoginHistoryId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="bigint" />
+          <Property Name="LoginDate" Type="datetime" />
+          <Property Name="LogoutDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="LookupCategoryDIM">
+          <Key>
+            <PropertyRef Name="LookupCategoryId" />
+          </Key>
+          <Property Name="LookupCategoryId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LookupCategoryDescription" Type="varchar" MaxLength="100" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="CreatedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="LookupDIM">
+          <Key>
+            <PropertyRef Name="LookupId" />
+          </Key>
+          <Property Name="LookupId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LookupCategoryId" Type="bigint" Nullable="false" />
+          <Property Name="LookupDescription" Type="varchar" MaxLength="100" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="CreatedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EmailId" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__Contacts__Refere__25869641">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="Contacts" Type="Self.Contacts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Contacts">
+              <PropertyRef Name="RefererId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Contacts__SexId__239E4DCF">
+          <End Role="LookupDIM" Type="Self.LookupDIM" Multiplicity="1" />
+          <End Role="Contacts" Type="Self.Contacts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LookupDIM">
+              <PropertyRef Name="LookupId" />
+            </Principal>
+            <Dependent Role="Contacts">
+              <PropertyRef Name="SexId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Contacts__UserId__24927208">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Contacts" Type="Self.Contacts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Contacts">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__LookupDIM__Looku__20C1E124">
+          <End Role="LookupCategoryDIM" Type="Self.LookupCategoryDIM" Multiplicity="1" />
+          <End Role="LookupDIM" Type="Self.LookupDIM" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LookupCategoryDIM">
+              <PropertyRef Name="LookupCategoryId" />
+            </Principal>
+            <Dependent Role="LookupDIM">
+              <PropertyRef Name="LookupCategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Contacts_StatusId">
+          <End Role="LookupDIM" Type="Self.LookupDIM" Multiplicity="0..1" />
+          <End Role="Contacts" Type="Self.Contacts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LookupDIM">
+              <PropertyRef Name="LookupId" />
+            </Principal>
+            <Dependent Role="Contacts">
+              <PropertyRef Name="StatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="MiracleModelStoreContainer">
+          <EntitySet Name="Contacts" EntityType="Self.Contacts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LoginHistory" EntityType="Self.LoginHistory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LookupCategoryDIM" EntityType="Self.LookupCategoryDIM" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LookupDIM" EntityType="Self.LookupDIM" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Contacts__Refere__25869641" Association="Self.FK__Contacts__Refere__25869641">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Contacts" EntitySet="Contacts" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Contacts__SexId__239E4DCF" Association="Self.FK__Contacts__SexId__239E4DCF">
+            <End Role="LookupDIM" EntitySet="LookupDIM" />
+            <End Role="Contacts" EntitySet="Contacts" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Contacts__UserId__24927208" Association="Self.FK__Contacts__UserId__24927208">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Contacts" EntitySet="Contacts" />
+          </AssociationSet>
+          <AssociationSet Name="FK__LookupDIM__Looku__20C1E124" Association="Self.FK__LookupDIM__Looku__20C1E124">
+            <End Role="LookupCategoryDIM" EntitySet="LookupCategoryDIM" />
+            <End Role="LookupDIM" EntitySet="LookupDIM" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Contacts_StatusId" Association="Self.FK_Contacts_StatusId">
+            <End Role="LookupDIM" EntitySet="LookupDIM" />
+            <End Role="Contacts" EntitySet="Contacts" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="MiracleModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="LookupCategoryDIM">
+          <Key>
+            <PropertyRef Name="LookupCategoryId" />
+          </Key>
+          <Property Name="LookupCategoryId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LookupCategoryDescription" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="LookupDIMs" Relationship="Self.FK__LookupDIM__Looku__20C1E124" FromRole="LookupCategoryDIM" ToRole="LookupDIM" />
+        </EntityType>
+        <EntityType Name="LookupDIM">
+          <Key>
+            <PropertyRef Name="LookupId" />
+          </Key>
+          <Property Name="LookupId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LookupCategoryId" Type="Int64" Nullable="false" />
+          <Property Name="LookupDescription" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="LookupCategoryDIM" Relationship="Self.FK__LookupDIM__Looku__20C1E124" FromRole="LookupDIM" ToRole="LookupCategoryDIM" />
+          <NavigationProperty Name="Contacts" Relationship="MiracleModel.FK__Contacts__SexId__239E4DCF" FromRole="LookupDIM" ToRole="Contact" />
+          <NavigationProperty Name="Contacts1" Relationship="MiracleModel.FK_Contacts_StatusId" FromRole="LookupDIM" ToRole="Contact" />
+          </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EmailId" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Contacts" Relationship="MiracleModel.FK__Contacts__Refere__25869641" FromRole="User" ToRole="Contact" />
+          <NavigationProperty Name="Contacts1" Relationship="MiracleModel.FK__Contacts__UserId__24927208" FromRole="User" ToRole="Contact" />
+          </EntityType>
+        <Association Name="FK__LookupDIM__Looku__20C1E124">
+          <End Role="LookupCategoryDIM" Type="Self.LookupCategoryDIM" Multiplicity="1" />
+          <End Role="LookupDIM" Type="Self.LookupDIM" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LookupCategoryDIM">
+              <PropertyRef Name="LookupCategoryId" />
+            </Principal>
+            <Dependent Role="LookupDIM">
+              <PropertyRef Name="LookupCategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="MiracleEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="LookupCategoryDIMs" EntityType="Self.LookupCategoryDIM" />
+          <EntitySet Name="LookupDIMs" EntityType="Self.LookupDIM" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+          <AssociationSet Name="FK__LookupDIM__Looku__20C1E124" Association="Self.FK__LookupDIM__Looku__20C1E124">
+            <End Role="LookupCategoryDIM" EntitySet="LookupCategoryDIMs" />
+            <End Role="LookupDIM" EntitySet="LookupDIMs" />
+          </AssociationSet>
+          <EntitySet Name="Contacts" EntityType="MiracleModel.Contact" />
+          <AssociationSet Name="FK__Contacts__Refere__25869641" Association="MiracleModel.FK__Contacts__Refere__25869641">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Contact" EntitySet="Contacts" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Contacts__SexId__239E4DCF" Association="MiracleModel.FK__Contacts__SexId__239E4DCF">
+            <End Role="LookupDIM" EntitySet="LookupDIMs" />
+            <End Role="Contact" EntitySet="Contacts" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Contacts__UserId__24927208" Association="MiracleModel.FK__Contacts__UserId__24927208">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Contact" EntitySet="Contacts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Contacts_StatusId" Association="MiracleModel.FK_Contacts_StatusId">
+            <End Role="LookupDIM" EntitySet="LookupDIMs" />
+            <End Role="Contact" EntitySet="Contacts" />
+          </AssociationSet>
+          <EntitySet Name="LoginHistories" EntityType="MiracleModel.LoginHistory" />
+          </EntityContainer>
+        <EntityType Name="Contact">
+          <Key>
+            <PropertyRef Name="ContactId" />
+          </Key>
+          <Property Name="ContactId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Int64" Nullable="false" />
+          <Property Name="SexId" Type="Int64" Nullable="false" />
+          <Property Name="Dob" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="City" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="MobileNumber" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="RefererId" Type="Int64" />
+          <Property Name="ModifiedBy" Type="Int64" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <Property Name="StatusId" Type="Int64" />
+          <Property Name="Name" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="IsActive" Type="Boolean" />
+          <NavigationProperty Name="User" Relationship="MiracleModel.FK__Contacts__Refere__25869641" FromRole="Contact" ToRole="User" />
+          <NavigationProperty Name="LookupDIM" Relationship="MiracleModel.FK__Contacts__SexId__239E4DCF" FromRole="Contact" ToRole="LookupDIM" />
+          <NavigationProperty Name="User1" Relationship="MiracleModel.FK__Contacts__UserId__24927208" FromRole="Contact" ToRole="User" />
+          <NavigationProperty Name="LookupDIM1" Relationship="MiracleModel.FK_Contacts_StatusId" FromRole="Contact" ToRole="LookupDIM" />
+        </EntityType>
+        <Association Name="FK__Contacts__Refere__25869641">
+          <End Type="MiracleModel.User" Role="User" Multiplicity="0..1" />
+          <End Type="MiracleModel.Contact" Role="Contact" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Contact">
+              <PropertyRef Name="RefererId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Contacts__SexId__239E4DCF">
+          <End Type="MiracleModel.LookupDIM" Role="LookupDIM" Multiplicity="1" />
+          <End Type="MiracleModel.Contact" Role="Contact" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LookupDIM">
+              <PropertyRef Name="LookupId" />
+            </Principal>
+            <Dependent Role="Contact">
+              <PropertyRef Name="SexId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Contacts__UserId__24927208">
+          <End Type="MiracleModel.User" Role="User" Multiplicity="1" />
+          <End Type="MiracleModel.Contact" Role="Contact" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Contact">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Contacts_StatusId">
+          <End Type="MiracleModel.LookupDIM" Role="LookupDIM" Multiplicity="0..1" />
+          <End Type="MiracleModel.Contact" Role="Contact" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LookupDIM">
+              <PropertyRef Name="LookupId" />
+            </Principal>
+            <Dependent Role="Contact">
+              <PropertyRef Name="StatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="LoginHistory">
+          <Key>
+            <PropertyRef Name="LoginHistoryId" />
+          </Key>
+          <Property Name="LoginHistoryId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Int64" />
+          <Property Name="LoginDate" Type="DateTime" Precision="3" />
+          <Property Name="LogoutDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="MiracleModelStoreContainer" CdmEntityContainer="MiracleEntities">
+          <EntitySetMapping Name="LookupCategoryDIMs">
+            <EntityTypeMapping TypeName="MiracleModel.LookupCategoryDIM">
+              <MappingFragment StoreEntitySet="LookupCategoryDIM">
+                <ScalarProperty Name="LookupCategoryId" ColumnName="LookupCategoryId" />
+                <ScalarProperty Name="LookupCategoryDescription" ColumnName="LookupCategoryDescription" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LookupDIMs">
+            <EntityTypeMapping TypeName="MiracleModel.LookupDIM">
+              <MappingFragment StoreEntitySet="LookupDIM">
+                <ScalarProperty Name="LookupId" ColumnName="LookupId" />
+                <ScalarProperty Name="LookupCategoryId" ColumnName="LookupCategoryId" />
+                <ScalarProperty Name="LookupDescription" ColumnName="LookupDescription" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="MiracleModel.User">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="EmailId" ColumnName="EmailId" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Contacts">
+            <EntityTypeMapping TypeName="MiracleModel.Contact">
+              <MappingFragment StoreEntitySet="Contacts">
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="StatusId" ColumnName="StatusId" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="RefererId" ColumnName="RefererId" />
+                <ScalarProperty Name="MobileNumber" ColumnName="MobileNumber" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Dob" ColumnName="Dob" />
+                <ScalarProperty Name="SexId" ColumnName="SexId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ContactId" ColumnName="ContactId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LoginHistories">
+            <EntityTypeMapping TypeName="MiracleModel.LoginHistory">
+              <MappingFragment StoreEntitySet="LoginHistory">
+                <ScalarProperty Name="LogoutDate" ColumnName="LogoutDate" />
+                <ScalarProperty Name="LoginDate" ColumnName="LoginDate" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="LoginHistoryId" ColumnName="LoginHistoryId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

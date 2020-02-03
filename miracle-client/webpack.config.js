@@ -21,7 +21,7 @@ module.exports = {
     open: true,
     historyApiFallback: true,
     disableHostCheck: true,
-    host: '192.168.16.246'
+    //host: '192.168.16.246'
   },
   resolve: {
     extensions: ['*', '.js', '.jsx']
@@ -61,7 +61,7 @@ module.exports = {
   },
   plugins: [
     new CleanWebpackPlugin({
-      cleanAfterEveryBuildPatterns: ['build']
+      cleanAfterEveryBuildPatterns: ['./build']
     }),
     new copyWebpackPlugin([
       { from: 'public' }

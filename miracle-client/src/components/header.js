@@ -1,5 +1,3 @@
-import '../assets/css/bootstrap.min.css';
-import '../assets/css/main.css';
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -8,7 +6,7 @@ import menuIcon from '../assets/images/menu-button.svg';
 import notificationIcon from '../assets/images/Notification.svg';
 import leftArrow from '../assets/images/left-arrow.svg';
 import * as constants from '../constants';
-import { teamMemberSelectedBack } from '../actions/header';
+import { teamMemberSelectedBack } from '../actions/myetam';
 
 class Header extends React.Component {
 
@@ -17,7 +15,7 @@ class Header extends React.Component {
         this.back = this.back.bind(this);
     }
 
-    back() {        
+    back() {           
         if (this.props.loadedPage === constants.MYTEAM_PAGE && this.props.previouseSelecteTeamMember.length > 0) {        
             this.props.teamMemberSelectedBack(this.props.previouseSelecteTeamMember[0]);
         }

@@ -1,5 +1,3 @@
-import '../assets/css/bootstrap.min.css';
-import '../assets/css/main.css';
 import React from 'react';
 import { connect } from 'react-redux';
 import { homepageloaded } from '../actions/pageloaded';
@@ -24,11 +22,10 @@ class Home extends React.Component {
     }
 
     handleMyTeamClick() {
-        this.props.teamMemberSelected(this.props.userDetails);
-        this.props.history.push("/home/myteam");
+        this.props.teamMemberSelected(this.props.userDetails);        
     }
 
-    renderUserName() {
+    renderUserName() {        
         return (
             <div className="top-header">
                 <div className="row">

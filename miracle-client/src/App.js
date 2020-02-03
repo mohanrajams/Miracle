@@ -1,16 +1,17 @@
 import React from 'react';
 import Login from './components/login';
 import HomeShell from './components/homeShell';
+import history from './history';
 
 import {
-  BrowserRouter as Router,
+  Router,
   Switch,
   Route
 } from "react-router-dom";
 
 function App() {
   return (
-    <Router>      
+    <Router history={history}>      
         <Switch>
           <Route exact path="/">
             <Login />

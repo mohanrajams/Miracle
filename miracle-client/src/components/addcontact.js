@@ -1,5 +1,3 @@
-import '../assets/css/bootstrap.min.css';
-import '../assets/css/main.css';
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -43,8 +41,7 @@ class AddContact extends React.Component {
 
     handleSubmit(e) {
         e.preventDefault();        
-        this.props.contactAdded(this.state);
-        this.props.history.push("/home/myteam");
+        this.props.contactAdded(this.state);     
     };
 
     render() {

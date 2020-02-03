@@ -1,3 +1,8 @@
+import './assets/css/bootstrap.min.css';
+import './assets/css/main.css';
+import $ from 'jquery';
+import './assets/js/popper.min.js';
+import './assets/js/bootstrap.min.js';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';

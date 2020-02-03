@@ -18,7 +18,7 @@
   },
   "scripts": {
     "start": "webpack-dev-server --mode=development",
-    "build": "webpack --mode=production"
+    "build": "webpack --mode=production --config webpack.config.production.js"
   },
   "eslintConfig": {
     "extends": "react-app"

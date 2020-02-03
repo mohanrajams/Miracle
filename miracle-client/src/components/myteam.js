@@ -1,5 +1,3 @@
-import '../assets/css/bootstrap.min.css';
-import '../assets/css/main.css';
 import React from 'react';
 import { connect } from 'react-redux';
 import { myteampageloaded } from '../actions/pageloaded';
@@ -22,6 +20,7 @@ class MyTeam extends React.Component {
 
     componentWillMount() {
         this.props.myteampageloaded();
+        console.log(this.props);
     }
 
     renderStatusChangeButton() {
@@ -67,13 +66,13 @@ class MyTeam extends React.Component {
                 </div>
                 <div className="col">
                     <div className="kpi Inprogress">
-                        <h3>{this.props.userDetails.teamMembers.filter(t => t.statusId !== 1).length}</h3>
+                        <h3>{this.props.userDetails.teamMembers.filter(t => t.statusId !== 4).length}</h3>
                         <p>Inprogress</p>
                     </div>
                 </div>
                 <div className="col">
                     <div className="kpi Active">
-                        <h3>{this.props.userDetails.teamMembers.filter(t => t.statusId === 1).length}</h3>
+                        <h3>{this.props.userDetails.teamMembers.filter(t => t.statusId === 4).length}</h3>
                         <p>Completed</p>
                     </div>
                 </div>
@@ -86,14 +85,12 @@ class MyTeam extends React.Component {
         this.props.teamMemberSelected(member);
     }
 
-    onStatusChangeClick(statusId, e) {        
-        this.props.teamMemberStatusChanged({
-            userDetails: this.props.userDetails,
-            changedStatusId: statusId
-        });
+    onStatusChangeClick(statusId, e) {
+        this.props.userDetails.statusId = statusId;
+        this.props.teamMemberStatusChanged(this.props.userDetails);
     }
 
-    renderTeamMembersSection() {
+    renderTeamMembersSection() {        
         return (
             <div className="list">
                 <ul className="row">
@@ -136,7 +133,6 @@ const mapStateToProps = state => ({
     isTeamMemberSelected: state.myteam.isTeamMemberSelected,
     statusLookup: state.homeShell.status
 })
-
 
 export default connect(mapStateToProps,
     {
