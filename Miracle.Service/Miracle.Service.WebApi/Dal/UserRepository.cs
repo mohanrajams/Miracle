@@ -10,6 +10,33 @@ namespace Miracle.Service.WebApi.Dal
 {
     public class UserRepository
     {
+
+        public bool IsMobileNumberAlreadyExists(long contactId, string mobileNumber)
+        {
+            using (var ctx = new MiracleEntities())
+            {
+                ctx.Configuration.LazyLoadingEnabled = false;
+                ctx.Configuration.ProxyCreationEnabled = false;
+
+                return ctx
+                    .Contacts
+                    .Any(c => c.ContactId != contactId && c.MobileNumber == mobileNumber.Trim());
+            }
+        }
+
+        public bool IsEmailAlreadyExists(long userId, string email)
+        {
+            using (var ctx = new MiracleEntities())
+            {
+                ctx.Configuration.LazyLoadingEnabled = false;
+                ctx.Configuration.ProxyCreationEnabled = false;
+
+                return ctx
+                    .Users
+                    .Any(c => c.UserId != userId && c.EmailId == email.Trim());
+            }
+        }
+
         public User FindUser(string emailId, string password)
         {
             using (var ctx = new MiracleEntities())
@@ -19,7 +46,7 @@ namespace Miracle.Service.WebApi.Dal
 
                 var user = ctx
                     .Users
-                    .FirstOrDefault(m => m.EmailId == emailId);
+                    .FirstOrDefault(m => m.EmailId == emailId && m.IsActive);
 
                 if (user != null && SecurePasswordHasher.Verify(password, user.Password))
                 {
@@ -92,7 +119,6 @@ namespace Miracle.Service.WebApi.Dal
                 ctx.Entry(contact).Property((u) => u.ModifiedBy).IsModified = true;
                 ctx.Entry(contact).Property((u) => u.ModifiedDate).IsModified = true;
                 ctx.Entry(contact).Property((u) => u.Name).IsModified = true;
-                ctx.Entry(contact).Property((u) => u.RefererId).IsModified = true;
                 ctx.Entry(contact).Property((u) => u.SexId).IsModified = true;
 
                 ctx.Entry(user).Property((u) => u.EmailId).IsModified = true;
@@ -103,11 +129,11 @@ namespace Miracle.Service.WebApi.Dal
             }
         }
 
-        public void ChangeStatus(User user,Contact contact)
+        public void ChangeStatus(User user, Contact contact)
         {
             using (var ctx = new MiracleEntities())
             {
-                ctx.Configuration.ValidateOnSaveEnabled = false;                
+                ctx.Configuration.ValidateOnSaveEnabled = false;
                 ctx.Users.Attach(user);
                 ctx.Contacts.Attach(contact);
 
@@ -116,7 +142,7 @@ namespace Miracle.Service.WebApi.Dal
                 ctx.Entry(contact).Property((c) => c.ModifiedDate).IsModified = true;
                 ctx.Entry(contact).Property((c) => c.ModifiedBy).IsModified = true;
 
-                ctx.SaveChanges();                
+                ctx.SaveChanges();
             }
         }
 
@@ -145,6 +171,25 @@ namespace Miracle.Service.WebApi.Dal
                 ctx.Users.Attach(user);
                 ctx.SaveChanges();
             }
-        }       
+        }
+
+        public string GetOldPassword(long userId)
+        {
+            using(var ctx=new MiracleEntities())
+            {
+                var user = ctx.Users.FirstOrDefault(u => u.UserId == userId);
+                return user.Password;
+            }
+        }
+
+        public void ChangePassword(long userId,string password)
+        {
+            using (var ctx = new MiracleEntities())
+            {
+                var user = ctx.Users.FirstOrDefault(u => u.UserId == userId);
+                user.Password = password;
+                ctx.SaveChanges();
+            }
+        }
     }
 }

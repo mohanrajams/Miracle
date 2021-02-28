@@ -5,7 +5,9 @@ import loginAction from '../actions/login';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
-
+import Form from 'react-validation/build/form';
+import Input from 'react-validation/build/input';
+import { required, email } from '../validation'
 
 class Login extends React.Component {
 
@@ -20,22 +22,31 @@ class Login extends React.Component {
 
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.hasError = this.hasError.bind(this);
     }
 
     handleChange(e) {
         this.setState({ [e.target.name]: e.target.value });
     };
 
+    hasError() {
+        this.form.validateAll();
+        return Object.values(this.form.state.byId)
+            .filter(o => Object.keys(o).filter(p => p === 'error').length).length > 0;
+    }
+
     handleSubmit(e) {
         e.preventDefault();
-        this.props.loginAction(this.state);
+        if (this.hasError() === false) {
+            this.props.loginAction(this.state);
+        }
     }
 
     render() {
         return (
 
             <div className="login-container">
-                <form className="form-signin" onSubmit={this.handleSubmit}>
+                <Form className="form-signin" onSubmit={this.handleSubmit} ref={c => { this.form = c }}>
                     <div className="text-center mb-2 parent-logo">
                         <img src={parentlogin} alt="" height="80" />
                     </div>
@@ -43,25 +54,25 @@ class Login extends React.Component {
                         <img src={imglogin} alt="" height="52" />
                     </div>
                     <div className="form-label-group">
-                       
-                        <input
+
+                        <Input
                             type="email"
                             id="inputEmail"
-                            className="form-control brd-error"
+                            className="form-control"
                             placeholder="Email address"
                             required=""
                             autoFocus=""
                             name='emailId'
                             onChange={this.handleChange}
                             value={this.state.emailId}
+                            validations={[email]}
                         />
 
-                        <label htmlFor="inputEmail">Email address</label>
-                        <span className="error-msg">Username Invalid</span>
+                        {/* <label htmlFor="inputEmail">Email address</label> */}
                     </div>
 
                     <div className="form-label-group">
-                        <input
+                        <Input
                             type="password"
                             name='password'
                             id="inputPassword"
@@ -69,14 +80,13 @@ class Login extends React.Component {
                             placeholder="Password"
                             required=""
                             value={this.state.password}
-                            onChange={this.handleChange} />
-                        <label htmlFor="inputPassword">Password</label>
+                            onChange={this.handleChange}
+                            validations={[required]} />
+                        {/* <label htmlFor="inputPassword">Password</label> */}
                     </div>
 
                     <button className="btn btn-lg btn-primary btn-block login-btn" type="submit">Sign in</button>
-                </form>
-
-
+                </Form>
             </div>)
     };
 

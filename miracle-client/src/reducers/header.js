@@ -17,6 +17,8 @@ const getTitle = function (page) {
             return 'Add New';
         case constants.EDIT_PAGE:
             return 'Edit Contact';
+        case constants.CHANGEPASSWORD_PAGE:
+            return 'Change Password';
         default:
             return '';
     }
@@ -26,21 +28,8 @@ const headerReducer = (state = intialState, action) => {
     switch (action.type) {
         case constants.NEW_PAGE_LOADED:
             return Object.assign({}, state, { title: getTitle(action.payload.loadedPage), loadedPage: action.payload.loadedPage });
-        case constants.TEAMMEMBER_SELECTED:
-            if (Object.keys(state.currentSelectedTeamMember).length > 0) {
-                return Object.assign({}, state, {
-                    previouseSelecteTeamMember: [state.currentSelectedTeamMember, ...state.previouseSelecteTeamMember],
-                    currentSelectedTeamMember: action.payload
-                });
-            }
-            else {
-                return Object.assign({}, state, {
-                    currentSelectedTeamMember: action.payload
-                })
-            }
-        case constants.TEAMMEMBER_SELECTED_BACK:
-            state.previouseSelecteTeamMember.shift()
-            return Object.assign({}, state, { currentSelectedTeamMember: action.payload });
+        case constants.LOGOUT:
+            return Object.assign({}, state, intialState);
         default:
             return state;
     }

@@ -21,7 +21,7 @@ class MyTeamMenu extends React.Component {
         });
     }
 
-    render() {
+    render() {    
         if (this.props.loggedInUserId === this.props.userDetails.userId) {
             return (
                 <div className="dropdown">
@@ -42,7 +42,7 @@ class MyTeamMenu extends React.Component {
                         <img width="20px" src={more} />
                     </button>
                     <div className="dropdown-menu" aria-labelledby="01">
-                        <a className="dropdown-item" href="#">Make a Call </a>
+                        <a className="dropdown-item" href={'tel:'+this.props.userDetails.mobile}>Make a Call </a>
                         <Link className="dropdown-item" to="/home/editcontact">Edit Details</Link>
                         <button className="dropdown-item" onClick={this.onDeleteClick} href="#">Delete</button>
                     </div>

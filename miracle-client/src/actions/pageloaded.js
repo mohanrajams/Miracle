@@ -19,3 +19,8 @@ export const editContactPageloaded = state => ({
     type: constants.NEW_PAGE_LOADED,
     payload: { loadedPage: constants.EDIT_PAGE }
 })
+
+export const changePasswordPageloaded = state => ({
+    type: constants.NEW_PAGE_LOADED,
+    payload: { loadedPage: constants.CHANGEPASSWORD_PAGE }
+})

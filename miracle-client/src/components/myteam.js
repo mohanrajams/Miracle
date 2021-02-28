@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { myteampageloaded } from '../actions/pageloaded';
-import { teamMemberSelected, teamMemberStatusChanged } from '../actions/myetam';
+import { loadTeamMembers, teamMemberStatusChanged } from '../actions/myetam';
 import PropTypes from 'prop-types';
 import TeamMemberCard from './teammembercard';
 import { withRouter } from 'react-router-dom';
@@ -16,11 +16,22 @@ class MyTeam extends React.Component {
 
         this.onTeamMemberclick = this.onTeamMemberclick.bind(this);
         this.onStatusChangeClick = this.onStatusChangeClick.bind(this);
+
+        this.unlistenHistory = this.props.history.listen((location, action) => {
+            var param = location.pathname.split("/").pop();
+            if (isNaN(param) === false) {
+                this.props.loadTeamMembers(param);
+            }
+        })
     }
 
     componentWillMount() {
         this.props.myteampageloaded();
-        console.log(this.props);
+        this.props.loadTeamMembers(this.props.match.params.userId);
+    }
+
+    componentWillUnmount() {
+        this.unlistenHistory();
     }
 
     renderStatusChangeButton() {
@@ -82,15 +93,15 @@ class MyTeam extends React.Component {
     }
 
     onTeamMemberclick(member) {
-        this.props.teamMemberSelected(member);
+        this.props.history.push("/home/myteam/" + member.userId);
     }
 
     onStatusChangeClick(statusId, e) {
-        this.props.userDetails.statusId = statusId;
+        this.props.userDetails.statusId = statusId;       
         this.props.teamMemberStatusChanged(this.props.userDetails);
     }
 
-    renderTeamMembersSection() {        
+    renderTeamMembersSection() {
         return (
             <div className="list">
                 <ul className="row">
@@ -129,6 +140,7 @@ MyTeam.propTypes = {
 const mapStateToProps = state => ({
     loggedInUserId: state.login.userId,
     userDetails: state.myteam.userDetails,
+    teamMembers: state.myteam.userDetails.teamMembers,
     statusId: state.myteam.userDetails.statusId,
     isTeamMemberSelected: state.myteam.isTeamMemberSelected,
     statusLookup: state.homeShell.status
@@ -137,6 +149,6 @@ const mapStateToProps = state => ({
 export default connect(mapStateToProps,
     {
         myteampageloaded,
-        teamMemberSelected,
+        loadTeamMembers,
         teamMemberStatusChanged
     })(withRouter(MyTeam));

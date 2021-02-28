@@ -223,6 +223,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ApiControllers\AccountController.cs" />
     <Compile Include="ApiControllers\ContactController.cs" />
     <Compile Include="ApiControllers\LookupController.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
@@ -273,6 +274,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\ChangePassword.cs" />
     <Compile Include="Models\Lookup.cs" />
     <Compile Include="Models\MiracleUser.cs" />
     <Compile Include="Models\SexLookup.cs" />
@@ -282,6 +284,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Client.Output.Build\assets\139a55fb18cf5e64c5ac0778d7280a82.png" />
+    <Content Include="Client.Output.Build\assets\1c23c36594c15913ab1c665951ae5f3a.png" />
     <Content Include="Client.Output.Build\assets\206f47586020bb8e0f6ad2d20a170721.jpg" />
     <Content Include="Client.Output.Build\assets\2ae9f1339c128d9b8ce3ddd4cf9a596b.png" />
     <Content Include="Client.Output.Build\assets\3d519de5d9857bf511b9b80cee0b0bd2.png" />
@@ -297,6 +300,14 @@
     <Content Include="Client.Output.Build\assets\cfa9151d1e99c165892ada52f7899316.png" />
     <Content Include="Client.Output.Build\assets\f969ae8ba5167837f1568dcdfe53954d.png" />
     <Content Include="Client.Output.Build\bundle.js" />
+    <Content Include="Client.Output.Build\images\icons\icon-128x128.png" />
+    <Content Include="Client.Output.Build\images\icons\icon-144x144.png" />
+    <Content Include="Client.Output.Build\images\icons\icon-152x152.png" />
+    <Content Include="Client.Output.Build\images\icons\icon-192x192.png" />
+    <Content Include="Client.Output.Build\images\icons\icon-384x384.png" />
+    <Content Include="Client.Output.Build\images\icons\icon-512x512.png" />
+    <Content Include="Client.Output.Build\images\icons\icon-72x72.png" />
+    <Content Include="Client.Output.Build\images\icons\icon-96x96.png" />
     <Content Include="Client.Output.Build\index.html" />
     <Content Include="Client.Output.Build\robots.txt" />
     <Content Include="Dal\Model\Miracle.Context.tt">
@@ -338,6 +349,7 @@
     <Content Include="Client.Output.Build\assets\ee6539921d713482b8ccd4d0d23961bb.ttf" />
     <None Include="packages.config" />
     <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
+    <None Include="Properties\PublishProfiles\File Deployment.pubxml" />
     <None Include="Properties\PublishProfiles\phygicartmiracletest - Web Deploy.pubxml" />
   </ItemGroup>
   <ItemGroup>

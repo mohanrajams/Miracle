@@ -6,7 +6,6 @@ import menuIcon from '../assets/images/menu-button.svg';
 import notificationIcon from '../assets/images/Notification.svg';
 import leftArrow from '../assets/images/left-arrow.svg';
 import * as constants from '../constants';
-import { teamMemberSelectedBack } from '../actions/myetam';
 
 class Header extends React.Component {
 
@@ -15,13 +14,8 @@ class Header extends React.Component {
         this.back = this.back.bind(this);
     }
 
-    back() {           
-        if (this.props.loadedPage === constants.MYTEAM_PAGE && this.props.previouseSelecteTeamMember.length > 0) {        
-            this.props.teamMemberSelectedBack(this.props.previouseSelecteTeamMember[0]);
-        }
-        else {
-            this.props.history.goBack();
-        }
+    back() {
+        this.props.history.goBack();
     }
 
     renderLeftButton() {
@@ -84,4 +78,4 @@ const mapStateToProps = state => ({
 })
 
 
-export default connect(mapStateToProps, { teamMemberSelectedBack })(withRouter(Header));
+export default connect(mapStateToProps)(withRouter(Header));

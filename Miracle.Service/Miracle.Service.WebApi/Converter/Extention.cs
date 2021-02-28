@@ -25,7 +25,7 @@ namespace Miracle.Service.WebApi.Converter
                 EmailId = contact.User1.EmailId,
                 Location = contact.City,
                 LoginStatus = true,
-                Mobile = contact.MobileNumber,
+                Mobile = contact.MobileNumber.Trim(),
                 SexId = contact.SexId,
                 StatusId = contact.StatusId.Value,
                 StatusDescription = contact.LookupDIM1.LookupDescription,
@@ -81,7 +81,7 @@ namespace Miracle.Service.WebApi.Converter
             {
                 UserId = input.UserId,
                 CreatedDate = DateTime.Now,
-                EmailId = input.EmailId,
+                EmailId = input.EmailId.Trim(),
                 Password = SecurePasswordHasher.Hash("123456"),
                 IsActive = false
             };
@@ -92,7 +92,7 @@ namespace Miracle.Service.WebApi.Converter
             return new User
             {
                 UserId = input.UserId,
-                EmailId = input.EmailId
+                EmailId = input.EmailId.Trim()
             };
         }
 
@@ -105,12 +105,29 @@ namespace Miracle.Service.WebApi.Converter
                 Dob = input.Dob,
                 IsActive = true,
                 ModifiedBy = modifiyingUserId,
-                MobileNumber = input.Mobile,
+                MobileNumber = input.Mobile.Trim(),
+                Name = input.UserName,
+                SexId = input.SexId,
+                StatusId = input.ContactId == 0 ? 6 : input.StatusId,                
+                ModifiedDate = DateTime.Now
+            };
+        }
+
+        public static Contact ConvertToContactsForAdd(this MiracleUser input, long modifiyingUserId)
+        {
+            return new Contact
+            {
+                ContactId = input.ContactId,
+                City = input.Location,
+                Dob = input.Dob,
+                IsActive = true,
+                ModifiedBy = modifiyingUserId,
+                MobileNumber = input.Mobile.Trim(),
                 Name = input.UserName,
                 SexId = input.SexId,
                 StatusId = input.ContactId == 0 ? 6 : input.StatusId,
-                RefererId = modifiyingUserId,
-                ModifiedDate = DateTime.Now
+                ModifiedDate = DateTime.Now,
+                RefererId=modifiyingUserId
             };
         }
     }

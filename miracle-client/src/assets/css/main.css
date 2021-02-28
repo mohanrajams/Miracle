@@ -68,7 +68,7 @@ body{
     transition: all .1s ease-in-out;
   }
   
-  .form-label-group input::-webkit-input-placeholder {
+  /* .form-label-group input::-webkit-input-placeholder {
     color: transparent;
   }
   
@@ -98,7 +98,7 @@ body{
     padding-bottom: .25rem;
     font-size: 12px;
     color: #777;
-  }
+  } */
   
   /* Fallback for Edge
   -------------------------------------------------- */
@@ -468,7 +468,54 @@ select{
 .brd-error{
     border-bottom: 2px solid #ff0000;
 }
+.is-invalid-input{
+    border-bottom: 2px solid #ff0000;
+}
+.form-signin .error-msg{
+    color:#610000;
+    font-size: 12px;
+}
 .error-msg{
     color:#ff0000;
     font-size: 12px;
+}
+.loader{
+    display: 'block';
+    z-index: 999;
+}
+.aligncenter {
+    text-align: center;
+}
+.overlay{
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.3);
+    position: fixed;
+    top: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.overlay img{
+    width: 94px;
+}
+.server-er{
+    margin: 0px !important;
+    font-size: 12px;
+}
+
+.changepasswordsuccess{
+    width: 100px;
+    height: 100px;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    background-color: transparent;    
+}
+
+.mx-125{
+    margin: 0px 125px;
+}
+
+.okbutton{
+    width: 100px;
 }

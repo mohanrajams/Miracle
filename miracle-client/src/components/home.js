@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { homepageloaded } from '../actions/pageloaded';
 import { teamMemberSelected } from '../actions/myetam';
+import { getUserDetail } from '../actions/login'
 import logo from '../assets/images/Logo-login.png';
 import team from '../assets/images/team.png';
 import miracle from '../assets/images/miracle.png';
@@ -14,11 +15,12 @@ class Home extends React.Component {
 
     constructor(props) {
         super(props);
+        this.handleMyTeamClick = this.handleMyTeamClick.bind(this);
     }
 
     componentWillMount() {
-        this.props.homepageloaded();
-        this.handleMyTeamClick = this.handleMyTeamClick.bind(this);
+        this.props.homepageloaded();        
+        this.props.getUserDetail();
     }
 
     handleMyTeamClick() {
@@ -118,4 +120,9 @@ const mapStateToProps = state => ({
 })
 
 
-export default connect(mapStateToProps, { homepageloaded, teamMemberSelected })(withRouter(Home));
+export default connect(mapStateToProps,
+    {
+        homepageloaded,
+        teamMemberSelected,
+        getUserDetail
+    })(withRouter(Home));

@@ -1,13 +1,14 @@
 import * as constants from '../constants';
 import $ from 'jquery';
 
-const getLookupPromise = () => {
+const changePasswordPromise = (state) => {
     return new Promise(function (resolve, reject) {
         $.ajax({
-            type: "GET",
-            url: constants.APIURL + 'Lookup/GetLookup',
+            type: "POST",
+            url: constants.APIURL + 'Account/ChangePassword',
             contentType: 'application/json; charset=utf-8',
             dataType: 'json',
+            data: JSON.stringify(state),
             beforeSend: function (xhr) {
                 xhr.setRequestHeader("Authorization", "Bearer " + sessionStorage.getItem('token'));
             },
@@ -21,16 +22,23 @@ const getLookupPromise = () => {
     });
 }
 
-export const loadLookup = state => {
+export const changePassword = state => {
     return (dispatch) => {
         dispatch({
-            type: constants.LOADING,            
+            type: constants.LOADING,
         });
-        getLookupPromise(state)
-            .then((lookup) => {                
+        changePasswordPromise(state)
+            .then(() => {
                 dispatch({
-                    type: constants.LOAD_LOOKUP,
-                    payload: lookup
+                    type: constants.PASSWORDCHANGED
+                });
+            }, (err) => {
+                dispatch({
+                    type: constants.ERROR_OCCURED,
+                    payload: {
+                        header: 'Server Error',
+                        message: 'Old password does not match'
+                    }
                 });
             });
     }
