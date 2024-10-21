@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="842d224b5f6541f08f03cd24c4c5f4c4" Name="Diagram1">
+        <EntityTypeShape EntityType="MiracleModel.LookupCategoryDIM" Width="1.5" PointX="1.5" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MiracleModel.LookupDIM" Width="1.5" PointX="0.75" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="MiracleModel.User" Width="1.5" PointX="0.75" PointY="1.625" IsExpanded="true" />
+        <AssociationConnector Association="MiracleModel.FK__LookupDIM__Looku__20C1E124" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="MiracleModel.Contact" Width="1.5" PointX="3" PointY="2.875" />
+        <AssociationConnector Association="MiracleModel.FK__Contacts__Refere__25869641" />
+        <AssociationConnector Association="MiracleModel.FK__Contacts__SexId__239E4DCF" />
+        <AssociationConnector Association="MiracleModel.FK__Contacts__UserId__24927208" />
+        <AssociationConnector Association="MiracleModel.FK_Contacts_StatusId" />
+        <EntityTypeShape EntityType="MiracleModel.LoginHistory" Width="1.5" PointX="5.375" PointY="0.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
